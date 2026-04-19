@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Alert, Badge, Col, Container, Form, Modal, Row, Tab, Tabs } from 'react-bootstrap';
 import {
   FaUsers, FaCalendarAlt, FaTags, FaTrash, FaEdit,
@@ -11,12 +10,14 @@ import { usersApi, eventsApi, categoriesApi } from '../../api';
 import Loader from '../../components/Loader/Loader';
 import AttendeesModal from '../../components/AttendeesModal/AttendeesModal';
 import styles from './AdminDashboard.module.css';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
   const currentUser = useSelector(selectUser);
 
-  const [activeTab, setActiveTab] = useState('users');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeTab = searchParams.get('tab') || 'users';
 
   // ── Users State ──
   const [users, setUsers] = useState([]);
@@ -61,6 +62,9 @@ export default function AdminDashboard() {
   const [successMsg, setSuccessMsg] = useState('');
   const showSuccess = (msg) => { setSuccessMsg(msg); setTimeout(() => setSuccessMsg(''), 3000); };
 
+  useEffect(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [eventsPage, usersPage, activeTab]);
   // ── Load Users ──
   useEffect(() => {
     if (activeTab !== 'users') return;
@@ -220,8 +224,7 @@ export default function AdminDashboard() {
 
         {successMsg && <Alert variant="success" className={styles.alertBox}>{successMsg}</Alert>}
 
-        <Tabs activeKey={activeTab} onSelect={(k) => setActiveTab(k)} className={styles.tabs}>
-
+        <Tabs activeKey={activeTab} onSelect={(k) => setSearchParams({ tab: k })} className={styles.tabs}>
           {/* ══════════════ USERS TAB ══════════════ */}
           <Tab eventKey="users" title={<span><FaUsers className="me-2" />Users</span>}>
             <div className={styles.tabContent}>

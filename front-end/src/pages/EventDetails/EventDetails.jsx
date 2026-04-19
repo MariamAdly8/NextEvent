@@ -32,12 +32,12 @@ export default function EventDetails() {
   const [error, setError] = useState('');
 
   const isRegistered = useMemo(() => {
-    if (!registeredEvents?.length) return false;
+    if (!isAuthenticated || !registeredEvents?.length) return false;
     return registeredEvents.some((reg) => {
       const eventId = typeof reg.event === 'object' ? reg.event?._id : reg.event;
       return eventId === id && reg.status !== 'cancelled';
     });
-  }, [registeredEvents, id]);
+  }, [isAuthenticated, registeredEvents, id]);
 
   useEffect(() => {
     const loadEvent = async () => {
