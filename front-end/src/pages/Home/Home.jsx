@@ -7,6 +7,7 @@ import { selectIsAuthenticated } from '../../store/slices/authSlice';
 import { eventsApi } from '../../api';
 import EventCard from '../../components/EventCard/EventCard';
 import styles from './Home.module.css';
+import Loader from '../../components/Loader/Loader';
 
 export default function Home() {
   const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -82,7 +83,11 @@ export default function Home() {
             <div className={styles.titleUnderline}></div>
           </div>
 
-          {isTopEventsLoading && <p className={styles.sectionInfo}>Loading top events...</p>}
+          {isTopEventsLoading && (
+            <div className="d-flex justify-content-center py-5">
+              <Loader text="Loading trending events..." />
+            </div>
+          )}    
           {!isTopEventsLoading && topEventsError && <p className={styles.sectionError}>{topEventsError}</p>}
           {!isTopEventsLoading && !topEventsError && topEvents.length === 0 && (
             <p className={styles.sectionInfo}>No events available yet.</p>
