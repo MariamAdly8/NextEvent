@@ -1,0 +1,71 @@
+.footerCustom {
+  background-color: #5c62b5; 
+  color: #ffffff;
+  padding: 40px 0 20px 0;
+  margin-top: auto; 
+}
+
+.brandSection h3 {
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.brandDescription {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.footerTitle {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.footerLink {
+  color: rgba(255, 255, 255, 0.7) !important;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.footerLink:hover {
+  color: #f4d03f !important; 
+}
+
+@media (min-width: 992px) {
+  .footerLink:hover {
+    padding-left: 2px;
+  }
+}
+
+.socialIcons {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.socialIcon {
+  color: white;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.socialIcon:hover {
+  color: #f4d03f !important; 
+  transform: translateY(-3px);
+}
+
+.bottomBar {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 30px;
+  padding-top: 20px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.681);
+}

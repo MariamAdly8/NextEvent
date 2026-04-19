@@ -1,0 +1,147 @@
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card.trending {
+  border-left: 4px solid #d32f2f;
+}
+
+.cardLink:hover .card {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Image ── */
+.imageWrapper {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.card.trending .imageWrapper {
+  height: 220px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.cardLink:hover .image {
+  transform: scale(1.04);
+}
+
+.dateBadge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #d32f2f;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  border-radius: 6px;
+  padding: 5px 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* ── Body ── */
+.body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.card.trending .title {
+  font-size: 1.25rem;
+}
+
+.description {
+  color: #64748b;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Footer ── */
+.footer {
+  border-top: 1px solid #f1f5f9;
+  padding-top: 14px;
+  margin-top: auto;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #64748b;
+  font-size: 0.88rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.locationIcon {
+  color: #5c62b5;
+  flex-shrink: 0;
+}
+
+.bottomRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.price {
+  color: #d32f2f;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.categoryTag {
+  background-color: #eff1ff;
+  color: #5c62b5;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.registrations {
+  color: #94a3b8;
+  font-size: 0.82rem;
+  font-weight: 600;
+}

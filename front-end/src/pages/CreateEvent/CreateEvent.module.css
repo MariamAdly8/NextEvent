@@ -1,0 +1,185 @@
+.pageBackground {
+  background-color: #f8fafc;
+  min-height: calc(100vh - 80px);
+  padding-bottom: 80px;
+}
+
+.wrapper {
+  padding-top: 40px;
+  max-width: 950px;
+}
+
+.headerSection {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.title {
+  color: #1e293b;
+  font-weight: 800;
+  font-size: 2.6rem;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #64748b;
+  font-size: 1.15rem;
+}
+
+.alertBox {
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* --- The Form Card --- */
+.formCard {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border-top: 6px solid #5c62b5; 
+}
+
+.sectionTitle {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.divider {
+  border-color: #e2e8f0;
+  margin: 35px 0;
+}
+
+/* --- Inputs Styling --- */
+.formLabel {
+  font-weight: 600;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+
+.labelIcon {
+  color: #5c62b5;
+  font-size: 1.1rem;
+}
+
+.customInput {
+  background-color: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  padding: 12px 15px !important;
+  transition: all 0.3s ease;
+  color: #1e293b !important;
+}
+
+.customInput:focus {
+  background-color: #ffffff !important;
+  border-color: #5c62b5 !important;
+  box-shadow: 0 0 0 3px rgba(92, 98, 181, 0.15) !important;
+}
+
+/* --- Map Styling --- */
+.mapContainerBox {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 30px;
+}
+
+.mapHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #64748b;
+  font-weight: 600;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+
+.mapHeaderIcon {
+  color: #d32f2f;
+  font-size: 1.2rem;
+}
+
+.mapWrapper {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #cbd5e1;
+}
+
+.map {
+  height: 350px;
+  width: 100%;
+  z-index: 1; 
+}
+
+.coordsText {
+  color: #10b981; 
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  text-align: right;
+}
+
+/* --- Submit Button --- */
+.submitWrapper {
+  text-align: right;
+  margin-top: 40px;
+}
+
+.submitBtn {
+  background-color: #d32f2f !important;
+  border: none !important;
+  padding: 14px 40px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
+}
+
+.submitBtn:hover:not(:disabled) {
+  background-color: #b71c1c !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(211, 47, 47, 0.4);
+}
+
+.submitBtn:disabled {
+  background-color: #94a3b8 !important;
+  box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .formCard {
+    padding: 25px 20px;
+  }
+  
+  .submitWrapper {
+    text-align: center;
+  }
+  
+  .submitBtn {
+    width: 100%;
+  }
+}
+
+/* --- Hide Bootstrap's Green Valid State --- */
+:global(.was-validated .form-control:valid),
+:global(.was-validated .form-select:valid) {
+  border-color: #e2e8f0 !important;
+  background-image: none !important;
+  padding-right: 15px !important; 
+}
+
+:global(.was-validated .form-control:valid:focus),
+:global(.was-validated .form-select:valid:focus) {
+  border-color: #5c62b5 !important;
+  box-shadow: 0 0 0 3px rgba(92, 98, 181, 0.15) !important;
+  background-color: #ffffff !important;
+}

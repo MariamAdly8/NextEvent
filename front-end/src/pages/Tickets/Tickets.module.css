@@ -1,0 +1,91 @@
+.pageBackground {
+  background-color: #f8fafc;
+  min-height: calc(100vh - 80px);
+  padding-bottom: 80px;
+}
+
+.wrapper {
+  padding-top: 50px;
+  max-width: 1100px;
+}
+
+.header {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.title {
+  font-weight: 800;
+  color: #1e293b;
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #64748b;
+  font-size: 1.15rem;
+}
+
+/* ── Ticket Wrapper: بيحط الـ badge فوق الـ EventCard ── */
+.ticketWrapper {
+  position: relative;
+  height: 100%;
+}
+
+.statusBadge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  font-size: 0.75rem !important;
+  padding: 5px 10px !important;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px;
+}
+
+/* ── Empty State ── */
+.emptyState {
+  text-align: center;
+  background: #ffffff;
+  padding: 60px 20px;
+  border-radius: 16px;
+  border: 1px dashed #cbd5e1;
+  margin-top: 20px;
+}
+
+.emptyIcon {
+  font-size: 4rem;
+  color: #cbd5e1;
+  margin-bottom: 20px;
+}
+
+.emptyState h3 {
+  color: #1e293b;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.emptyState p {
+  color: #64748b;
+  margin-bottom: 20px;
+}
+
+.exploreBtn {
+  background-color: #5c62b5;
+  color: #ffffff;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.exploreBtn:hover {
+  background-color: #434896;
+  color: #ffffff;
+  transform: translateY(-2px);
+}

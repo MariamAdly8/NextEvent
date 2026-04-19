@@ -1,0 +1,459 @@
+/* ── Page ── */
+.pageBackground {
+  background-color: #f8fafc;
+  min-height: calc(100vh - 80px);
+  padding-bottom: 80px;
+}
+
+.wrapper {
+  padding-top: 40px;
+  max-width: 950px;
+}
+
+.alertBox {
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* ── Profile Card ── */
+.profileCard {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border-top: 6px solid #5c62b5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.avatarCircle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5c62b5, #7c82d5);
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(92, 98, 181, 0.35);
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.profileName {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0;
+}
+
+.profileEmail {
+  color: #64748b;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.infoIcon {
+  color: #5c62b5;
+}
+
+.roleBadge {
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  border-radius: 20px;
+  text-transform: capitalize;
+  margin-top: 4px;
+}
+
+/* ── Edit Name ── */
+.editNameWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 360px;
+}
+
+.editNameInput {
+  background-color: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  padding: 12px 15px !important;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b !important;
+  transition: all 0.3s ease;
+}
+
+.editNameInput:focus {
+  background-color: #ffffff !important;
+  border-color: #5c62b5 !important;
+  box-shadow: 0 0 0 3px rgba(92, 98, 181, 0.15) !important;
+}
+
+.inlineError {
+  color: #d32f2f;
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+.editActions {
+  display: flex;
+  gap: 10px;
+}
+
+/* ── Profile Action Buttons ── */
+.profileActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.editBtn,
+.passwordBtn,
+.adminBtn,
+.deleteAccountBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.editBtn {
+  background-color: #5c62b5;
+  color: #ffffff;
+}
+.editBtn:hover {
+  background-color: #4a50a0;
+  box-shadow: 0 4px 12px rgba(92, 98, 181, 0.35);
+}
+
+.passwordBtn {
+  background-color: #f1f5f9;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+}
+.passwordBtn:hover {
+  background-color: #e2e8f0;
+}
+
+/* ✅ Admin button */
+.adminBtn {
+  background-color: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fcd34d;
+}
+.adminBtn:hover {
+  background-color: #fcd34d;
+}
+
+.deleteAccountBtn {
+  background-color: #fff5f5;
+  color: #d32f2f;
+  border: 1px solid #fecaca;
+}
+.deleteAccountBtn:hover {
+  background-color: #fee2e2;
+}
+
+/* ── Save / Cancel ── */
+.saveBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #5c62b5;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.saveBtn:hover:not(:disabled) { background-color: #4a50a0; }
+.saveBtn:disabled { background-color: #94a3b8; cursor: not-allowed; }
+
+.cancelBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #f1f5f9;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.cancelBtn:hover { background-color: #e2e8f0; }
+
+.deleteConfirmBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #d32f2f;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.deleteConfirmBtn:hover:not(:disabled) { background-color: #b71c1c; }
+.deleteConfirmBtn:disabled { background-color: #94a3b8; cursor: not-allowed; }
+
+/* ── Events Section ── */
+.eventsSection { margin-top: 10px; }
+
+.sectionTitle {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sectionIcon { color: #5c62b5; }
+
+.eventCount {
+  background-color: #5c62b5;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 20px;
+  margin-left: 4px;
+}
+
+/* ── Empty State ── */
+.emptyEvents {
+  text-align: center;
+  padding: 60px 20px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.emptyIcon {
+  font-size: 3rem;
+  color: #cbd5e1;
+  margin-bottom: 16px;
+}
+
+.emptyEvents p {
+  color: #64748b;
+  font-size: 1.05rem;
+  margin-bottom: 20px;
+}
+
+.createEventBtn {
+  background-color: #d32f2f;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 28px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+}
+.createEventBtn:hover { background-color: #b71c1c; transform: translateY(-1px); }
+
+/* ── Event Card ── */
+.eventCard {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
+}
+.eventCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.eventImage {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.eventCard:hover .eventImage { transform: scale(1.03); }
+
+/* ✅ Event title link */
+.eventTitleLink {
+  text-decoration: none;
+  color: inherit;
+}
+.eventTitleLink:hover .eventTitle {
+  color: #5c62b5;
+}
+
+.eventBody { padding: 18px; }
+
+.eventTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 10px;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+
+.eventMeta {
+  font-size: 0.88rem;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 6px;
+}
+
+.metaIcon { color: #5c62b5; flex-shrink: 0; }
+
+.eventCardActions {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.attendeesBtn,
+.editEventBtn,
+.deleteEventBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 8px;
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 70px;
+}
+
+/* ✅ Attendees button */
+.attendeesBtn {
+  background-color: #f0fdf4;
+  color: #16a34a;
+}
+.attendeesBtn:hover {
+  background-color: #16a34a;
+  color: #ffffff;
+}
+
+.editEventBtn {
+  background-color: #eff1ff;
+  color: #5c62b5;
+}
+.editEventBtn:hover {
+  background-color: #5c62b5;
+  color: #ffffff;
+}
+
+.deleteEventBtn {
+  background-color: #fff5f5;
+  color: #d32f2f;
+}
+.deleteEventBtn:hover {
+  background-color: #d32f2f;
+  color: #ffffff;
+}
+
+/* ── Modal ── */
+.modalHeader {
+  border-bottom: 1px solid #f1f5f9;
+  padding: 20px 24px;
+}
+
+.modalTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modalBody { padding: 24px; }
+
+.modalFooter {
+  border-top: 1px solid #f1f5f9;
+  padding: 16px 24px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.formLabel {
+  font-weight: 600;
+  color: #334155;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+.customInput {
+  background-color: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  padding: 12px 15px !important;
+  color: #1e293b !important;
+  transition: all 0.3s ease;
+}
+.customInput:focus {
+  background-color: #ffffff !important;
+  border-color: #5c62b5 !important;
+  box-shadow: 0 0 0 3px rgba(92, 98, 181, 0.15) !important;
+}
+
+.confirmText {
+  color: #475569;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .profileCard { padding: 30px 20px; }
+  .profileActions { flex-direction: column; width: 100%; }
+  .editBtn, .passwordBtn, .adminBtn, .deleteAccountBtn { justify-content: center; width: 100%; }
+  .sectionTitle { font-size: 1.2rem; }
+}

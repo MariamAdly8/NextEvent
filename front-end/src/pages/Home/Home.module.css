@@ -1,0 +1,192 @@
+.homeWrapper {
+  overflow-x: hidden;
+}
+
+/* --- Hero Section --- */
+.heroSection {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #1e293b;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.highlight {
+  color: #5c62b5;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 991px) {
+  .heroButtons {
+    justify-content: center;
+  }
+}
+
+.primaryBtn, .secondaryBtn {
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.primaryBtn {
+  background-color: #d32f2f;
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
+}
+
+.primaryBtn:hover {
+  background-color: #b71c1c;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(211, 47, 47, 0.4);
+}
+
+.secondaryBtn {
+  background-color: transparent;
+  color: #5c62b5;
+  border: 2px solid #5c62b5;
+}
+
+.secondaryBtn:hover {
+  background-color: #5c62b5;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* --- Hero Abstract Art --- */
+.heroArt {
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
+
+.circleLarge {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, rgba(92, 98, 181, 0.2) 0%, rgba(92, 98, 181, 0.05) 100%);
+  border-radius: 50%;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.circleSmall {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(135deg, rgba(211, 47, 47, 0.15) 0%, rgba(211, 47, 47, 0.05) 100%);
+  border-radius: 50%;
+  animation: pulse 6s ease-in-out infinite alternate;
+}
+
+.glassCard1, .glassCard2, .glassCard3 {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 20px 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 1.2rem;
+}
+
+.artIcon {
+  font-size: 2rem;
+  color: #5c62b5;
+}
+
+.glassCard1 {
+  top: 15%;
+  left: 0;
+  animation: float 5s ease-in-out infinite;
+}
+
+.glassCard2 {
+  top: 50%;
+  right: -5%;
+  animation: float 4s ease-in-out infinite 1s;
+}
+.glassCard2 .artIcon {
+  color: #d32f2f;
+}
+
+.glassCard3 {
+  bottom: 10%;
+  left: 15%;
+  animation: float 6s ease-in-out infinite 2s;
+}
+
+/* --- Top Events Section --- */
+.topEventsSection {
+  padding: 80px 0;
+  background-color: #f8fafc;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.sectionTitle {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 15px;
+}
+
+.titleUnderline {
+  height: 4px;
+  width: 60px;
+  background-color: #d32f2f;
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+.sectionInfo,
+.sectionError {
+  text-align: center;
+  color: #475569;
+  margin-top: 12px;
+  font-size: 1.05rem;
+}
+
+.sectionError {
+  color: #b91c1c;
+}
+
+/* --- Animations --- */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
