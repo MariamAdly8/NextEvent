@@ -3,7 +3,7 @@ import 'dotenv/config';
 import app from './app.js';
 import mongoose from 'mongoose';
 
-const port=process.env.PORT||8080;
+const port=process.env.PORT||4000;
 const mongoURI=process.env.MONGO_URI;
 
 if (!mongoURI) {
