@@ -110,6 +110,7 @@ export default function SignUp() {
                   </div>
                 </Form.Group>
 
+                
                 <Form.Group className="mb-4" controlId="password">
                   <Form.Label className={styles.formLabel}>Password</Form.Label>
                   <div className={styles.inputWrapper}>
@@ -117,13 +118,15 @@ export default function SignUp() {
                     <Form.Control
                       type="password"
                       name="password"
-                      placeholder="Create a strong password"
+                      placeholder="Create a strong password" 
                       value={formData.password}
                       onChange={handleChange}
                       className={styles.customInput}
                       required
                     />
                   </div>
+                  <Form.Text className="text-muted d-block mt-2" style={{ fontSize: '12px' }}>
+                  Must be at least 8 characters, including uppercase and lowercase letters, a number, and a special symbol (@, #, $).                  </Form.Text>
                 </Form.Group>
 
                 <Button 
