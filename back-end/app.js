@@ -20,7 +20,10 @@ import errorHandlingMW from './middlewares/errorHandlingMW.js';
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: [
+    'http://localhost:5173', 
+    'https://nextevent-1.onrender.com' 
+  ],
   credentials: true
 }));
 app.use(helmet());
