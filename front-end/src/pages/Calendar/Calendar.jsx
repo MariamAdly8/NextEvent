@@ -52,7 +52,9 @@ export default function Calendar() {
     const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
     return new Date(dateString).toLocaleDateString('en-US', options);
   };
-
+  useEffect(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [page]);
   return (
     <div className={styles.pageBackground}>
       <Container className={styles.wrapper}>
