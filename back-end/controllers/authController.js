@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import User from "../models/userModel.js";
-import HTTPError from './../utils/httpError.js';
+import HTTPError from './../utils/HTTPError.js';
 import RefreshToken from "../models/refreshTokenModel.js";
 export const signup= async (req,res,next)=>{
     try{

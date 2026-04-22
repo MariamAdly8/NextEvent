@@ -1,5 +1,5 @@
 import User from "../models/userModel.js";
-import HTTPError from "../utils/httpError.js";
+import HTTPError from "../utils/HTTPError.js";
 import jwt from 'jsonwebtoken'
 export const authentication= async (req,res,next)=>{
     try{

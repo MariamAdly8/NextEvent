@@ -1,4 +1,4 @@
-import HTTPError from './../utils/httpError.js';
+import HTTPError from './../utils/HTTPError.js';
 import Event from './../models/eventModel.js';
 import Category from './../models/categoryModel.js';
 import Registration from './../models/registrationModel.js';
