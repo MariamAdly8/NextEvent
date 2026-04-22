@@ -49,7 +49,7 @@ const eventSchema = new Schema(
     },
     image: {
       type: String,
-      default: "https://res.cloudinary.com/dkjtdvvrk/image/upload/v1774917729/default-event-image_x3ahd5.png",
+      default: "https://res.cloudinary.com/dkjtdvvrk/image/upload/v1776864705/default-event-image_wr3gnw.png",
     },    
     category: {
       type: Schema.Types.ObjectId, 
