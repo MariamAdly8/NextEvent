@@ -60,17 +60,25 @@ export default function EventDetails() {
   }, [id, isAuthenticated, dispatch]);
 
   const handleRegistrationToggle = async () => {
-    if (!isAuthenticated) {
-      navigate('/login');
-      return;
-    }
-    if (isRegistered) {
-      await dispatch(cancelEventRegistration(id));
-    } else {
-      await dispatch(registerEvent(id));
-    }
-    dispatch(fetchProfile());
-  };
+      if (!isAuthenticated) {
+        navigate('/login');
+        return;
+      }
+      if (isRegistered) {
+        await dispatch(cancelEventRegistration(id));
+      } else {
+        await dispatch(registerEvent(id));
+      }
+
+      dispatch(fetchProfile());
+      
+      try {
+        const data = await eventsApi.getEventById(id);
+        setEvent(data?.event ?? null);
+      } catch {
+          // Ignore errors here since we already handle them in the main loadEvent effect
+        }
+    };
 
   if (isLoading) {
     return (
