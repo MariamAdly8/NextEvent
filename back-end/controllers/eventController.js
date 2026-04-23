@@ -100,6 +100,11 @@ export const getTopRegisteredEvents = async (req, res, next) => {
     try {
         const topEvents = await Event.aggregate([
             {
+                $match: {
+                    date: { $gt: new Date() }
+                }
+            },
+            {
                 $lookup: {
                     from: "registrations",
                     localField: "_id",
