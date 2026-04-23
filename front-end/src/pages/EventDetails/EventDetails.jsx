@@ -74,6 +74,15 @@ export default function EventDetails() {
     return () => { dispatch(clearRegistrationMessages()); };
   }, [id, isAuthenticated, dispatch]);
 
+  useEffect(() => {
+    if (successMessage) {
+      const timer = setTimeout(() => {
+        dispatch(clearRegistrationMessages());
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [successMessage, dispatch]);
+
   const handleRegistrationToggle = async () => {
     if (!isAuthenticated) {
       navigate('/login');
@@ -82,8 +91,12 @@ export default function EventDetails() {
     if (isRegistered) {
       await dispatch(cancelEventRegistration(id));
     } else {
-      await dispatch(registerEvent(id));
-      setShowQR(true);
+      try {
+        await dispatch(registerEvent(id)).unwrap();
+        setShowQR(true);
+      } catch {
+        // registration failed, QR won't show
+      }
     }
 
     dispatch(fetchProfile());
@@ -94,23 +107,16 @@ export default function EventDetails() {
       // ignore
     }
   };
-  useEffect(() => {
-    if (successMessage) {
-      const timer = setTimeout(() => {
-        dispatch(clearRegistrationMessages());
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [successMessage, dispatch]);
+
   if (isLoading) {
-  return (
-    <div className={styles.pageBackground}>
-      <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '60vh' }}>
-        <Loader text="Loading event details..." />
+    return (
+      <div className={styles.pageBackground}>
+        <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '60vh' }}>
+          <Loader text="Loading event details..." />
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
   if (error) {
     return (
@@ -284,7 +290,6 @@ export default function EventDetails() {
           </Col>
         </Row>
       </Container>
-
 
       <QRModal
         show={showQR}
