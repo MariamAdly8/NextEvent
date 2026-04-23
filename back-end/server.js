@@ -23,3 +23,13 @@ mongoose.connect(mongoURI)
 app.listen(port, "0.0.0.0", () => {
   console.log(`Server is running on port ${port}`);
 });
+
+process.on('unhandledRejection', (err) => {
+    console.log('UNHANDLED REJECTION!');
+    console.log(err.name, err.message);
+});
+
+process.on('uncaughtException', (err) => {
+    console.log('UNCAUGHT EXCEPTION!');
+    console.log(err.name, err.message);
+});

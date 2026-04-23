@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { Alert, Badge, Col, Container, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import { FaRegFrownOpen } from 'react-icons/fa';
+import { FaRegFrownOpen, FaQrcode } from 'react-icons/fa';
 import { selectIsAuthenticated } from '../../store/slices/authSlice';
 import { usersApi } from '../../api';
 import Loader from '../../components/Loader/Loader';
 import EventCard from '../../components/EventCard/EventCard';
+import QRModal from '../../components/QRModal/QRModal';
 import styles from './Tickets.module.css';
 
 const getBadgeVariant = (status) => {
@@ -24,6 +25,8 @@ export default function Tickets() {
   const [registeredEvents, setRegisteredEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
+
+  const [selectedTicket, setSelectedTicket] = useState(null);
 
   useEffect(() => {
     const loadTickets = async () => {
@@ -80,15 +83,25 @@ export default function Tickets() {
 
                 return (
                   <Col key={registration._id} lg={4} md={6} className="mb-4">
-                    {/* ✅ wrapper عشان نضيف الـ status badge فوق الـ EventCard */}
                     <div className={styles.ticketWrapper}>
+                      {/* Status Badge */}
                       <Badge
                         bg={getBadgeVariant(registration.status)}
                         className={styles.statusBadge}
                       >
                         {registration.status || 'Unknown'}
                       </Badge>
+
                       <EventCard event={event} variant="default" />
+
+                      {registration.qrCode && registration.status !== 'cancelled' && (
+                        <button
+                          className={styles.qrBtn}
+                          onClick={() => setSelectedTicket(registration)}
+                        >
+                          <FaQrcode /> Show Ticket QR
+                        </button>
+                      )}
                     </div>
                   </Col>
                 );
@@ -97,6 +110,15 @@ export default function Tickets() {
           </>
         )}
       </Container>
+
+      {selectedTicket && (
+        <QRModal
+          show={!!selectedTicket}
+          onHide={() => setSelectedTicket(null)}
+          event={selectedTicket.event}
+          qrCode={selectedTicket.qrCode}
+        />
+      )}
     </div>
   );
 }

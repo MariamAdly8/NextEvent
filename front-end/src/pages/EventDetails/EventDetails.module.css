@@ -211,7 +211,7 @@
 /* ── Register Button ── */
 .registerBtn {
   width: calc(100% - 50px);
-  margin: 0 25px 25px 25px;
+  margin: 0 25px 12px 25px;
   padding: 14px;
   background-color: #d32f2f !important;
   border: none !important;
@@ -235,7 +235,7 @@
 /* ── Cancel Button ── */
 .cancelBtn {
   width: calc(100% - 50px);
-  margin: 0 25px 25px 25px;
+  margin: 0 25px 12px 25px;
   padding: 14px;
   background-color: transparent !important;
   border: 2px solid #d32f2f !important;
@@ -257,4 +257,28 @@
 .cancelBtn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* ✅ QR Button */
+.qrBtn {
+  width: calc(100% - 50px);
+  margin: 0 25px 25px 25px;
+  padding: 12px;
+  background-color: #eff1ff !important;
+  border: 1px solid #c7d2fe !important;
+  color: #5c62b5 !important;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.qrBtn:hover {
+  background-color: #5c62b5 !important;
+  color: #ffffff !important;
+  border-color: #5c62b5 !important;
 }

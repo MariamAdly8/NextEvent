@@ -41,7 +41,7 @@ export default function Home() {
             <Col lg={6} className="text-center text-lg-start mb-5 mb-lg-0 z-index-1">
               <h1 className={styles.heroTitle}>
                 Discover & Create <br />
-                <span className={styles.highlight}>Unforgettable</span> Events
+                <span className={styles.highlight}>Unforgettable</span><br/> Events
               </h1>
               <div className={styles.heroButtons}>
                 <Link to="/explore" className={styles.primaryBtn}>Explore Events</Link>

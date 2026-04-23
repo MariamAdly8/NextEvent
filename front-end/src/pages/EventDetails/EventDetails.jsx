@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { 
   FaMapMarkerAlt, FaUsers, FaCalendarAlt, 
-  FaClock, FaTicketAlt, FaUserTie 
+  FaClock, FaTicketAlt, FaUserTie, FaQrcode
 } from 'react-icons/fa';
 import { eventsApi } from '../../api';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
@@ -17,6 +17,7 @@ import {
   cancelEventRegistration, 
   clearRegistrationMessages 
 } from '../../store/slices/registrationsSlice';
+import QRModal from '../../components/QRModal/QRModal';
 
 export default function EventDetails() {
   const { id } = useParams();
@@ -25,11 +26,13 @@ export default function EventDetails() {
 
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const registeredEvents = useSelector((state) => state.users.registeredEvents);
+  const latestTicket = useSelector((state) => state.registrations.latestTicket);
   const { isLoading: isRegLoading, error: regError, successMessage } = useSelector((state) => state.registrations);
 
   const [event, setEvent] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
+  const [showQR, setShowQR] = useState(false);
 
   const isRegistered = useMemo(() => {
     if (!isAuthenticated || !registeredEvents?.length) return false;
@@ -38,6 +41,17 @@ export default function EventDetails() {
       return eventId === id && reg.status !== 'cancelled';
     });
   }, [isAuthenticated, registeredEvents, id]);
+
+  const currentTicketQR = useMemo(() => {
+    if (!registeredEvents?.length) return null;
+    const reg = registeredEvents.find((r) => {
+      const eventId = typeof r.event === 'object' ? r.event?._id : r.event;
+      return eventId === id && r.status !== 'cancelled';
+    });
+    return reg?.qrCode ?? null;
+  }, [registeredEvents, id]);
+
+  const activeQR = latestTicket?.qrCode || currentTicketQR;
 
   useEffect(() => {
     const loadEvent = async () => {
@@ -60,26 +74,33 @@ export default function EventDetails() {
   }, [id, isAuthenticated, dispatch]);
 
   const handleRegistrationToggle = async () => {
-      if (!isAuthenticated) {
-        navigate('/login');
-        return;
-      }
-      if (isRegistered) {
-        await dispatch(cancelEventRegistration(id));
-      } else {
-        await dispatch(registerEvent(id));
-      }
+    if (!isAuthenticated) {
+      navigate('/login');
+      return;
+    }
+    if (isRegistered) {
+      await dispatch(cancelEventRegistration(id));
+    } else {
+      await dispatch(registerEvent(id));
+      setShowQR(true);
+    }
 
-      dispatch(fetchProfile());
-      
-      try {
-        const data = await eventsApi.getEventById(id);
-        setEvent(data?.event ?? null);
-      } catch {
-          // Ignore errors here since we already handle them in the main loadEvent effect
-        }
-    };
-
+    dispatch(fetchProfile());
+    try {
+      const data = await eventsApi.getEventById(id);
+      setEvent(data?.event ?? null);
+    } catch {
+      // ignore
+    }
+  };
+  useEffect(() => {
+    if (successMessage) {
+      const timer = setTimeout(() => {
+        dispatch(clearRegistrationMessages());
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [successMessage, dispatch]);
   if (isLoading) {
     return (
       <div className={styles.pageBackground}>
@@ -247,11 +268,29 @@ export default function EventDetails() {
                         : 'Register Now'}
                 </Button>
 
+                {isRegistered && activeQR && (
+                  <Button
+                    className={styles.qrBtn}
+                    onClick={() => setShowQR(true)}
+                  >
+                    <FaQrcode className="me-2" />
+                    Show My Ticket QR
+                  </Button>
+                )}
+
               </div>
             </div>
           </Col>
         </Row>
       </Container>
+
+
+      <QRModal
+        show={showQR}
+        onHide={() => setShowQR(false)}
+        event={event}
+        qrCode={activeQR}
+      />
     </div>
   );
 }

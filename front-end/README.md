@@ -39,10 +39,11 @@ src/
 │   ├── Footer/                 # App footer
 │   ├── Loader/                 # Spinner component (inline + fullscreen)
 │   ├── NavBar/                 # Responsive navbar with search
+│   ├── QRModal/                # QR code ticket modal with download support
 │   └── ScrollToTop/            # Auto scroll to top on route change
 │
 ├── layouts/
-│   ├── MainLayout.jsx          # BrowserRouter + all routes
+│   ├── MainLayout.jsx          # BrowserRouter + all routes + ProtectedRoute/AdminRoute
 │   └── SharedLayout.jsx        # NavBar + Outlet + Footer wrapper
 │
 ├── pages/
@@ -50,14 +51,14 @@ src/
 │   ├── Calendar/               # Monthly events calendar view
 │   ├── CreateEvent/            # Create new event form with map
 │   ├── EditEvent/              # Edit existing event form with map
-│   ├── EventDetails/           # Event detail page + register/cancel
+│   ├── EventDetails/           # Event detail page + register/cancel + QR ticket
 │   ├── Explore/                # Browse & filter all events + pagination
 │   ├── Home/                   # Landing page + trending events
 │   ├── Login/                  # Login form
 │   ├── NotFound/               # 404 page
 │   ├── Profile/                # User profile + organized events management
 │   ├── SignUp/                 # Registration form
-│   └── Tickets/                # User's registered events (tickets)
+│   └── Tickets/                # User's registered events (tickets) + QR codes
 │
 └── store/
     ├── store.js                # Redux store configuration
@@ -67,7 +68,7 @@ src/
         ├── userSlice.js        # User profile + registeredEvents state
         ├── eventsSlice.js      # Events state
         ├── categoriesSlice.js  # Categories state
-        └── registrationsSlice.js # Registration state
+        └── registrationsSlice.js # Registration state (incl. latestTicket + QR)
 ```
 
 ---
@@ -154,9 +155,18 @@ npm run lint       # Run ESLint
 - Full event info with interactive **Leaflet map**
 - Register / Cancel Registration with real-time button state update
 - Sold out and past event handling
+- **QR Ticket Modal** — opens automatically after successful registration, and available via "Show My Ticket QR" button on return visits
 
 ### 🎫 My Tickets
-- All registered events
+- All registered events displayed as cards with status badge
+- **"Show Ticket QR"** button on each active ticket — opens a QR modal with a download option
+
+### 🎫 QR Code Tickets
+- Generated automatically by the backend upon registration
+- Displayed in a modal immediately after registering for an event
+- Accessible from the Event Details page or the My Tickets page
+- Can be **downloaded as a PNG** directly from the modal
+- QR code encodes: `registrationId`, `eventId`, and `userId` for verification at the event entrance
 
 ### 👤 Profile
 - Edit display name inline
@@ -172,7 +182,7 @@ Three tabs with full CRUD:
 - Search users with debounce
 - Paginated table
 - Change user role (user ↔ admin)
-- Delete user 
+- Delete user
 
 **Events Tab**
 - Search & paginate all events
@@ -193,8 +203,6 @@ Three tabs with full CRUD:
 - Edit page pre-fills existing event data and verifies organizer ownership
 
 ---
-
-
 
 ## 🔒 Route Protection
 
@@ -231,3 +239,4 @@ All pages use **CSS Modules** for scoped styling.
 - The `EditEvent` page intentionally reuses `CreateEvent.module.css` since the layout is identical.
 - The NavBar search on mobile is available inside the collapsed menu.
 - Cookie-based refresh tokens require `withCredentials: true` on all Axios requests — already configured.
+- QR codes are generated server-side as base64 PNG data URLs and stored on the registration document, so they are always available without regeneration.
