@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import { Alert, Col, Container, Form, Row } from 'react-bootstrap';
 import { useSearchParams } from 'react-router-dom';
-import { FaSearch, FaFilter, FaRegFrownOpen } from 'react-icons/fa';
+import { FaSearch, FaFilter, FaRegFrownOpen, FaCalendarAlt } from 'react-icons/fa';
 import { eventsApi, categoriesApi } from '../../api';
 import styles from './Explore.module.css';
 import Loader from '../../components/Loader/Loader';
@@ -12,6 +12,7 @@ export default function Explore() {
 
   const [search, setSearch] = useState(searchParams.get('search') || '');
   const [category, setCategory] = useState('');
+  const [dateFilter, setDateFilter] = useState('all');
   const [events, setEvents] = useState([]);
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -31,7 +32,6 @@ export default function Explore() {
     syncSearchFromUrl();
   }, [syncSearchFromUrl]);
 
-  // 1. Load Categories
   useEffect(() => {
     const loadCategories = async () => {
       try {
@@ -44,17 +44,14 @@ export default function Explore() {
     loadCategories();
   }, []);
 
-  // Reset page when filters change
   useEffect(() => {
     setPage(1);
-  }, [search, category]);
+  }, [search, category, dateFilter]);
 
-  // Scroll to top on page change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [page]);
 
-  // 2. Load Events with debounce
   useEffect(() => {
     const loadEvents = async () => {
       try {
@@ -63,6 +60,8 @@ export default function Explore() {
         const params = { page, limit: 9 };
         if (search.trim()) params.search = search.trim();
         if (category) params.category = category;
+        if (dateFilter === 'upcoming') params.dateFrom = new Date().toISOString();
+        if (dateFilter === 'past') params.dateTo = new Date().toISOString();
         const data = await eventsApi.getEvents(params);
         setEvents(data?.events ?? []);
         setTotalPages(data?.pagination?.totalPages || 1);
@@ -76,12 +75,12 @@ export default function Explore() {
     const delay = search ? 500 : 0;
     const timer = setTimeout(loadEvents, delay);
     return () => clearTimeout(timer);
-  }, [search, category, page]);
+  }, [search, category, dateFilter, page]);
 
   const emptyStateText = useMemo(() => {
-    if (search || category) return "We couldn't find any events matching your filters.";
+    if (search || category || dateFilter !== 'all') return "We couldn't find any events matching your filters.";
     return "No events are available at the moment.";
-  }, [search, category]);
+  }, [search, category, dateFilter]);
 
   const handleSearchChange = (e) => {
     const val = e.target.value;
@@ -93,6 +92,7 @@ export default function Explore() {
   const handleClear = () => {
     setSearch('');
     setCategory('');
+    setDateFilter('all');
     setSearchParams({});
   };
 
@@ -107,7 +107,7 @@ export default function Explore() {
 
         <div className={styles.filterBar}>
           <Row className="g-3">
-            <Col md={8}>
+            <Col md={6}>
               <div className={styles.inputWrapper}>
                 <FaSearch className={styles.inputIcon} />
                 <Form.Control
@@ -118,7 +118,7 @@ export default function Explore() {
                 />
               </div>
             </Col>
-            <Col md={4}>
+            <Col md={3}>
               <div className={styles.inputWrapper}>
                 <FaFilter className={styles.inputIcon} />
                 <Form.Select
@@ -130,6 +130,20 @@ export default function Explore() {
                   {categories.map((cat) => (
                     <option key={cat._id} value={cat._id}>{cat.name}</option>
                   ))}
+                </Form.Select>
+              </div>
+            </Col>
+            <Col md={3}>
+              <div className={styles.inputWrapper}>
+                <FaCalendarAlt className={styles.inputIcon} />
+                <Form.Select
+                  className={styles.customInput}
+                  value={dateFilter}
+                  onChange={(e) => setDateFilter(e.target.value)}
+                >
+                  <option value="all">All Events</option>
+                  <option value="upcoming">Upcoming</option>
+                  <option value="past">Past</option>
                 </Form.Select>
               </div>
             </Col>

@@ -19,7 +19,7 @@ export default function Calendar() {
       try {
         setIsLoading(true);
         setError('');
-        const data = await eventsApi.getEvents({ page, limit: 10 });
+        const data = await eventsApi.getEvents({ page, limit: 10, dateFrom: new Date().toISOString() });
         setEvents(data?.events ?? []);
         setTotalPages(data?.pagination?.totalPages || 1);
       } catch (err) {

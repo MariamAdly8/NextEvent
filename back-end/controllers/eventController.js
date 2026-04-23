@@ -57,16 +57,19 @@ export const createEvent=async(req,res,next)=>{
 
 export const getAllEvents = async (req, res, next) => {
     try {
-        let { category, search, page = 1, limit = 9 } = req.query;
+        let { category, search, page = 1, limit = 9, dateFrom, dateTo } = req.query;
         page = parseInt(page);
         limit = parseInt(limit);
+
         const filter = {};
-        if (category) {
-            filter.category = category; 
-        }
-        if (search) {
-            filter.title = { $regex: search, $options: 'i' };
-        }
+
+        if (category) filter.category = category;
+        if (search) filter.title = { $regex: search, $options: 'i' };
+
+        // ✅ date filter للـ Calendar
+        if (dateFrom) filter.date = { ...filter.date, $gte: new Date(dateFrom) };
+        if (dateTo) filter.date = { ...filter.date, $lte: new Date(dateTo) };
+
         const skip = (page - 1) * limit;
 
         const [events, totalEvents] = await Promise.all([
@@ -74,8 +77,8 @@ export const getAllEvents = async (req, res, next) => {
                 .sort({ date: 1 })
                 .skip(skip)
                 .limit(limit)
-                .populate('category', 'name') 
-                .populate('organizer', 'name'), 
+                .populate('category', 'name')
+                .populate('organizer', 'name'),
             Event.countDocuments(filter)
         ]);
 
