@@ -36,9 +36,7 @@ export const registerForEvent = async (req, res, next) => {
         });
 
         const qrData = JSON.stringify({
-            registrationId: registration._id,
-            eventId: event._id,
-            userId: userId
+            registrationId: registration._id
         });
 
         const qrCodeImage = await QRCode.toDataURL(qrData);
