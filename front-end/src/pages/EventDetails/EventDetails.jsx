@@ -18,6 +18,7 @@ import {
   clearRegistrationMessages 
 } from '../../store/slices/registrationsSlice';
 import QRModal from '../../components/QRModal/QRModal';
+import Loader from '../../components/Loader/Loader';
 
 export default function EventDetails() {
   const { id } = useParams();
@@ -102,14 +103,14 @@ export default function EventDetails() {
     }
   }, [successMessage, dispatch]);
   if (isLoading) {
-    return (
-      <div className={styles.pageBackground}>
-        <Container className={styles.wrapper}>
-          <p className={styles.infoText}>Loading event details...</p>
-        </Container>
+  return (
+    <div className={styles.pageBackground}>
+      <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '60vh' }}>
+        <Loader text="Loading event details..." />
       </div>
-    );
-  }
+    </div>
+  );
+}
 
   if (error) {
     return (
